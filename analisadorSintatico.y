@@ -1,0 +1,11 @@
+%{
+#include <stdio.h>
+#include <string.h>
+%}
+
+
+%token DIGITO LETRA SINAL NUMERO_INTEIRO NUMERO_REAL PALAVRA PALAVRA_RESERVADA SIMBOLO SIMBOLO_INVALIDO
+
+%% 
+
+%%
