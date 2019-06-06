@@ -1,4 +1,3 @@
-%{
 	#include <stdio.h>
 	#include "y.tab.h"
 	void foo(){
@@ -7,14 +6,16 @@
 %}
 
 %%
-digit [0-9]+                 return DIGITO;
-letter [a-zA-Z]              return LETRA;
-space [ \t\n]+              /*ignora espaço em branco*/;
-sign [+, -]                      return SINAL; 
-num_int -?{digit}({digit})*      return NUMERO_INTEIRO;
-num_real -?{digit}+"."{digit}+   return NUMERO_REAL;
-word [a-zA-Z][a-zA-Z0-9_]*       return PALAVRA;
-palavra_reservada ("program")|("var")|("if")|("else")|("then")|("while")|("do")|("for")|("begin")|("end")|("integer")|("real")|("read")|("write")|("ident")|("repeat")|("writeln")|("nomep")|("readln")|("until") return PALAVRA-RESERVADA;
-simb (":")|("=")|(";")|(",")|("(")|(")")|(">")|(">=")|("<")|("<=")|("+")|("-")|("/")|("*")|("{")|("}")|("!")|("%") return SIMBOLO;
-invalid_simb ("@")|("#")|("$")|("&")                  return SIMBOLO_INVALIDO;
+[0-9]+                 return DIGITO;
+[a-z]              return LETRA_MINUSCULA;
+[A-Z]              return LETRA_MAISCULA;
+[ \t\n]+              /*ignora espaço em branco*/;
+[+, -]                      return SINAL; 
+
+[{digit}+"."{digit}]+   return NUMERO_REAL;
+[a-zA-Z]*            return PALAVRA;
+[a-zA-Z0-9_]*       return PALAVRA;
+[("program")|("var")|("if")|("else")|("then")|("while")|("do")|("for")|("begin")|("end")|("integer")|("real")|("read")|("write")|("ident")|("repeat")|("writeln")|("nomep")|("readln")|("until")] return PALAVRA-RESERVADA;
+ [(":")|("=")|(";")|(",")|("(")|(")")|(">")|(">=")|("<")|("<=")|("+")|("-")|("/")|("*")|("{")|("}")|("!")|("%")] return SIMBOLO;
+[("@")|("#")|("$")|("&")]                  return SIMBOLO_INVALIDO;
 %%
