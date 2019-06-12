@@ -1,0 +1,113 @@
+program lalg;
+{entrada}
+{Identifiers can be any length, but many Pascal compilers will only look at the first 32 characters or so. That is,}
+
+    {ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFAlphaBeta}
+    {ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGammaDelta}
+
+{may be equivalent to some Pascal compilers because the differences begin in the 33rd character. Free Pascal limits identifiers to 127 characters}
+
+{To make your code compilable by all compilers, use a reasonable length for identifiers -- up to 15 characters. That way, you'll also save on typing. }
+{Source: http://wiki.freepascal.org/Identifiers}
+
+var ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFAlphaBetaABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGammaDeltaABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFAlphaBetaABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGammaDeltaABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFAlphaBetaABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGammaDelta: integer; {too long identifier}
+
+var 2ab: character; {invalid identifier}
+
+a~b 
+a!b 
+a@b
+a#b
+a$b
+a%b
+a^b
+a&b
+a*b
+a(b
+a)b
+a+b
+a`b
+a-b
+a=b
+a{b
+a}b
+a[b
+a]b
+a:b
+a"b
+a;b
+a'b
+a<b
+a>b
+a?b
+a,b
+a.b
+a/b
+a|b
+a\b 
+~b
+!b
+@b
+#b
+$b
+%b
+^b
+&b
+*b
+(b
+)b
++b
+`b
+-b
+=b
+{b
+}b
+[b
+]b
+:b
+"b
+;b
+'b
+<b
+>b
+?b
+,b
+.b
+/b
+|b
+\b
+a~
+a!
+a@
+a#
+a$
+a%
+a^
+a&
+a*
+a(
+a)
+a+
+a`
+a-
+a=
+a{
+a}
+a[
+a]
+a:
+a"
+a;
+a'
+a<
+a>
+a?
+a,
+a.
+a/
+a|
+a\ {invalid identifiers} {http://wiki.freepascal.org/Identifiers}
+
+begin
+readd(a, A1, -1, -1, _, !, @, #, $, %, ¨, &, *, ¹, ², ³, £, ¢, ¬, [, }, {, -, /, \, 2.3, -2.3, 2..3, 2.3.3, 2., .1, 0.1); {more invalid identifiers}
+end.
