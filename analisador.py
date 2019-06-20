@@ -25,9 +25,9 @@ symbol_msg = {
 }
 
 identifier_msg = {
-	"integer;": " - identifier is integer",
-	"real;": " - identifier is real",
-	"digit;": " - identifier is digit"
+	"integer;": " - identificador eh integer",
+	"real;": " - identificador eh real",
+	"digit;": " - identificador eh digit"
 }
 
 def fragment_sub_tokens (in_word): #tira expressoes
@@ -60,11 +60,16 @@ def check_token (in_word):
 			is_in_comment = True
 		elif tk_list[1] != 0 and tk_list[2] != 0:
 			#procura no dicionario de simbolos
-			if(tk_list[0] != 0):
-				if (len(tk_list[0]) > 15):
+			first_tk = tk_list[0]
+			if(first_tk != 0):
+				if tk_list[1] == ";":
+					if (first_tk + ";" in identifier_msg): #identificadores
+						print (first_tk + identifier_msg[first_tk+";"])
+						return
+				if (len(first_tk) > 15):
 					print ("Token muito grande")
 				else:
-					print (tk_list[0] + ' - id')
+					print (first_tk + ' - id')
 			if(tk_list[1] != 0):
 				print (tk_list[1] + symbol_msg[tk_list[1]])
 			if(tk_list[2] != 0):
@@ -74,8 +79,6 @@ def check_token (in_word):
 					print (tk_list[2] + ' - id')
 		elif (in_word in reserved_word): #procura da lista de palavras reservadas
 			print (in_word + ' - Palavra reservada')
-		elif (in_word in identifier_msg): #identificadores
-			print (in_word + identifier_msg[in_word])
 	elif (in_word[-1] == "}"):
 		is_in_comment = False
 
