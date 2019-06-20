@@ -32,7 +32,7 @@ def check_token (in_word):
 			is_in_comment = True
 		elif (in_word in reserved_word): #procura da lista de palavras reservadas
 			print (in_word + ' - Palavra reservada')
-		elif (len(in_word > 15):
+		elif (len(in_word) > 15):
 			print ("Token muito grande")
 		else:
 			#procura no dicionario de simbolos
