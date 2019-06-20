@@ -24,6 +24,14 @@ symbol_msg = {
 	"%": " - simbolo de porcento"
 }
 
+identifier_msg = {
+	"integer;": " - identifier is integer",
+	"real;": " - identifier is real",
+	"digit;": " - identifier is digit"
+}
+
+#
+
 #funcoes de suporte
 def check_token (in_word):
 	global is_in_comment
@@ -34,6 +42,8 @@ def check_token (in_word):
 			print (in_word + ' - Palavra reservada')
 		elif (len(in_word) > 15):
 			print ("Token muito grande")
+		elif (in_word in identifier_msg): #identificadores
+			print (in_word + identifier_msg[in_word])
 		else:
 			#procura no dicionario de simbolos
 			print(in_word)
