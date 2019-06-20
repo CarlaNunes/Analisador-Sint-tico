@@ -87,6 +87,8 @@ for param in sys.argv :
 	if(param != "analisador.py"):
 		try:
 			with open(param) as in_file:
+				linin = "----------------------------------------------------------\n"
+				print (linin + "Abrindo arquivo: " + param + "\n" + linin)
 				for line in in_file:
 					for word in line.split():
 						check_token (word)
