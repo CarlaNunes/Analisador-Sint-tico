@@ -59,7 +59,6 @@ def fragment_sub_tokens (in_word): #tira expressoes
 #funcoes de suporte
 def check_token (in_word):
 	global is_in_comment
-	print in_word
 	tk_list = fragment_sub_tokens(in_word)
 	if (not is_in_comment):
 		if (in_word == "\n") or (in_word == ""): 
@@ -73,6 +72,8 @@ def check_token (in_word):
 				check_token(in_word[in_word.find("}")+1: -1])
 		elif (in_word in reserved_word): #procura da lista de palavras reservadas
 			print (in_word + ' - Palavra reservada')
+		elif tk_list[0] == 0 and tk_list[2] == 0:
+			print (tk_list[1] + symbol_msg[tk_list[1]])
 		elif tk_list[1] == 0 and tk_list[2] == 0:
 			if tk_list[0].isalpha():
 				print (tk_list[0] + ' - id') #nomes de id
@@ -82,6 +83,8 @@ def check_token (in_word):
 					dot_pos = first_tk.find(".")
 					dot_pre = first_tk[0:dot_pos]
 					dot_post = first_tk[dot_pos+1:len(first_tk)]
+					if (dot_pre in reserved_word):
+						print (dot_pre + ' - Palavra reservada')
 					if(is_number(dot_pre) and is_number(dot_post)):
 						print (first_tk + ' - id')
 				else:
