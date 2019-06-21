@@ -27,7 +27,8 @@ symbol_msg = {
 identifier_msg = {
 	"integer;": " - identificador eh integer",
 	"real;": " - identificador eh real",
-	"digit;": " - identificador eh digit"
+	"digit;": " - identificador eh digit",
+	"lalg;": " - identificador eh nome do programa"
 }
 
 def is_number(s):
