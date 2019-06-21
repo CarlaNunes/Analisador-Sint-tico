@@ -30,6 +30,13 @@ identifier_msg = {
 	"digit;": " - identificador eh digit"
 }
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 def fragment_sub_tokens (in_word): #tira expressoes
 	for sub_sy in symbol_msg:
 		symb_pos = in_word.find(sub_sy)
@@ -55,10 +62,31 @@ def check_token (in_word):
 	print in_word
 	tk_list = fragment_sub_tokens(in_word)
 	if (not is_in_comment):
-		if in_word == "\n":
+		if (in_word == "\n") or (in_word == ""): 
 			return
 		if ("{" in in_word):
+			if(in_word.find("{") > 0) :
+				check_token(in_word[0: in_word.find("{")])
 			is_in_comment = True
+			if ("}" in in_word):
+				is_in_comment = False
+				check_token(in_word[in_word.find("}")+1: -1])
+		elif (in_word in reserved_word): #procura da lista de palavras reservadas
+			print (in_word + ' - Palavra reservada')
+		elif tk_list[1] == 0 and tk_list[2] == 0:
+			if tk_list[0].isalpha():
+				print (tk_list[0] + ' - id') #nomes de id
+			else:
+				if("." in tk_list[0]):
+					first_tk = tk_list[0]
+					dot_pos = first_tk.find(".")
+					dot_pre = first_tk[0:dot_pos]
+					dot_post = first_tk[dot_pos+1:len(first_tk)]
+					if(is_number(dot_pre) and is_number(dot_post)):
+						print (first_tk + ' - id')
+				else:
+					print (tk_list[0] + ' - id malformado')
+
 		elif tk_list[1] != 0 and tk_list[2] != 0:
 			#procura no dicionario de simbolos
 			first_tk = tk_list[0]
@@ -67,21 +95,35 @@ def check_token (in_word):
 					if (first_tk + ";" in identifier_msg): #identificadores
 						print (first_tk + identifier_msg[first_tk+";"])
 						return
+					else:
+						print (first_tk + " - ERRO - identificador nao encontrado")
+						return
 				if (len(first_tk) > 15):
 					print ("Token muito grande")
 				else:
-					print (first_tk + ' - id')
+					if("." in first_tk):
+						dot_pos = first_tk.find(".")
+						dot_pre = first_tk[0:dot_pos]
+						dot_post = first_tk[dot_pos+1: len(first_tk)]
+						if(is_number(dot_pre) and is_number(dot_post)):
+							print (first_tk + ' - id')
+						else:
+							print (first_tk + ' - id malformado')
+					else:
+						print (first_tk + ' - id')
 			if(tk_list[1] != 0):
 				print (tk_list[1] + symbol_msg[tk_list[1]])
 			if(tk_list[2] != 0):
 				if (len(tk_list[2]) > 15):
 					print ("Token muito grande")
 				elif (tk_list[2] != '') :
-					print (tk_list[2] + ' - id')
-		elif (in_word in reserved_word): #procura da lista de palavras reservadas
-			print (in_word + ' - Palavra reservada')
-	elif (in_word[-1] == "}") or ():
-		is_in_comment = False
+					check_token(tk_list[2])
+	elif ("}" in in_word):
+		if(in_word.find("}") < len(in_word) - 1):
+			is_in_comment = False
+			check_token(in_word[in_word.find("}")+1: -1])
+		else:
+			is_in_comment = False
 
 #Arquivo a ser testado e lido
 for param in sys.argv :
